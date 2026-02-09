@@ -49,6 +49,9 @@ public class InitiatePunch : MonoBehaviour
         LeftFistAnim.speed = minSpeed;
         RightFistAnim.speed = minSpeed;
         waitTime = rightPunchClip.length;
+
+        LeftFistAnim.enabled = false;
+        RightFistAnim.enabled = false;
     }
 
     // Update is called once per frame
@@ -87,6 +90,7 @@ public class InitiatePunch : MonoBehaviour
                 }
         }
         leftCount = 0;
+        LeftFistAnim.enabled = false;
     }
 
     public void OnRightMouse(InputAction.CallbackContext ctx){
@@ -103,6 +107,7 @@ public class InitiatePunch : MonoBehaviour
             }
         }
         rightCount = 0;
+        RightFistAnim.enabled = false;
     }
 
     void PlayLeftAnimationsAndWait(float duration)
@@ -110,6 +115,7 @@ public class InitiatePunch : MonoBehaviour
         //leftCanPunch = false;
         //rightCanPunch = false; 
         //Camera.Play("Punch_Shake", -1, 0f);  
+        LeftFistAnim.enabled = true;
         lTimer = punchCooldown;
         if(rTimer<oppPunchCooldown) rTimer = oppPunchCooldown;
         lSpeed = Mathf.Clamp(minSpeed + (duration*durationToSpeedMult), minSpeed, maxSpeed);
@@ -126,7 +132,7 @@ public class InitiatePunch : MonoBehaviour
         //leftCanPunch = false;
        // rightCanPunch = false;  
         //Camera.Play("Punch_Shake", -1, 0f);
-        
+        RightFistAnim.enabled = true;
         rTimer = punchCooldown;
         if(lTimer<oppPunchCooldown)lTimer = oppPunchCooldown; 
         rSpeed = Mathf.Clamp(minSpeed + (duration*durationToSpeedMult), minSpeed, maxSpeed);
